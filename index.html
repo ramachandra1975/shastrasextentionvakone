@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Script as Philosophy · Series A · Part Two · Cultural Musings</title>
+<style>
+  :root{
+    --paper:#fbf7ee;
+    --paper-deep:#f3ecdd;
+    --ink:#2a2018;
+    --ink-soft:#5b4d3c;
+    --crimson:#7d1f2b;
+    --crimson-deep:#5c1620;
+    --gold:#a9772f;
+    --gold-soft:#c79a4f;
+    --line:#d8c9a8;
+    --line-soft:#e8ddc4;
+    --sidebar-bg:#211814;
+    --sidebar-ink:#e7d9bd;
+    --sidebar-ink-dim:#a3917a;
+    --serif: "Tiro Devanagari Sanskrit", "Noto Serif Devanagari", "Palatino Linotype", Palatino, Georgia, serif;
+    --serif-body: Georgia, "Palatino Linotype", Palatino, "Book Antiqua", serif;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif-body);
+    font-size:17px;
+    line-height:1.7;
+    scroll-behavior:smooth;
+  }
+
+  a{color:var(--crimson);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .skt{font-family:var(--serif);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--sidebar-bg);
+    color:var(--sidebar-ink);
+    padding:34px 26px 60px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .sidebar::-webkit-scrollbar{width:6px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#3a2c22;border-radius:4px;}
+
+  .brand{
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+  }
+  .brand-sub{
+    font-size:11px;
+    color:var(--sidebar-ink-dim);
+    letter-spacing:.12em;
+    margin-bottom:28px;
+  }
+
+  .series-tag{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--sidebar-ink-dim);
+    margin-bottom:4px;
+  }
+  .doc-title{
+    font-family:var(--serif);
+    font-size:21px;
+    line-height:1.3;
+    color:#fff;
+    margin:6px 0 26px;
+  }
+
+  .nav-heading{
+    font-family:var(--sans);
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin:22px 0 10px;
+    border-top:1px solid #3a2c22;
+    padding-top:18px;
+  }
+  .nav-heading.first{border-top:none;padding-top:0;margin-top:0;}
+
+  .tab-link{
+    display:block;
+    font-family:var(--sans);
+    font-size:13.3px;
+    color:var(--sidebar-ink);
+    padding:8px 10px;
+    border-radius:4px;
+    margin-bottom:2px;
+    cursor:pointer;
+    border-left:2px solid transparent;
+    line-height:1.45;
+  }
+  .tab-link:hover{
+    background:#2c211b;
+    text-decoration:none;
+  }
+  .tab-link.active{
+    background:#2f231c;
+    border-left:2px solid var(--gold-soft);
+    color:#fff;
+    font-weight:600;
+  }
+  .tab-link .num{
+    color:var(--gold-soft);
+    margin-right:6px;
+    font-family:var(--serif);
+  }
+
+  .series-list{
+    margin-top:8px;
+  }
+  .series-item{
+    display:block;
+    font-family:var(--sans);
+    font-size:12px;
+    color:var(--sidebar-ink-dim);
+    padding:6px 10px;
+    line-height:1.5;
+    border-left:2px solid transparent;
+  }
+  .series-item.current{
+    color:#fff;
+    border-left:2px solid var(--crimson);
+    background:#2c211b;
+    font-weight:600;
+  }
+  .series-item:hover{text-decoration:none;color:var(--sidebar-ink);}
+
+  /* ===== Main content ===== */
+  .main{
+    padding:0;
+    max-width:980px;
+  }
+
+  .top-strip{
+    background:var(--paper-deep);
+    border-bottom:1px solid var(--line);
+    padding:14px 56px;
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .hero{
+    padding:54px 56px 36px;
+    border-bottom:3px double var(--gold);
+  }
+  .hero-skt{
+    font-family:var(--serif);
+    font-size:15px;
+    color:var(--gold);
+    letter-spacing:.04em;
+    margin-bottom:14px;
+  }
+  .hero-tag{
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--crimson);
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-size:42px;
+    line-height:1.18;
+    color:var(--crimson-deep);
+    margin:0 0 14px;
+  }
+  .hero h2{
+    font-family:var(--serif-body);
+    font-style:italic;
+    font-weight:400;
+    font-size:19px;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+    line-height:1.5;
+  }
+  .hero-meta{
+    font-family:var(--sans);
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--line-soft);
+  }
+  .hero-meta b{color:var(--crimson);}
+
+  .panel{
+    display:none;
+    padding:46px 56px 70px;
+  }
+  .panel.active{display:block;}
+
+  .panel h1.section-title{
+    font-family:var(--serif);
+    font-size:30px;
+    color:var(--crimson-deep);
+    border-bottom:2px solid var(--gold-soft);
+    padding-bottom:14px;
+    margin:0 0 30px;
+  }
+  .section-roman{
+    font-family:var(--serif);
+    font-size:15px;
+    color:var(--gold);
+    letter-spacing:.1em;
+    margin-bottom:2px;
+  }
+
+  h3{
+    font-family:var(--serif-body);
+    font-size:22px;
+    color:var(--crimson-deep);
+    margin:36px 0 14px;
+    font-weight:700;
+  }
+  h4{
+    font-family:var(--serif-body);
+    font-size:17.5px;
+    color:var(--ink);
+    font-weight:700;
+    font-style:italic;
+    margin:26px 0 10px;
+  }
+
+  p{margin:0 0 16px;text-align:justify;hyphens:auto;}
+
+  .skt-block{
+    font-family:var(--serif);
+    font-size:21px;
+    text-align:center;
+    color:var(--crimson-deep);
+    background:var(--paper-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 20px;
+    margin:28px 0 6px;
+    line-height:1.9;
+  }
+  .skt-translit{
+    text-align:center;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0 0 4px;
+  }
+  .skt-gloss{
+    text-align:center;
+    font-family:var(--sans);
+    font-size:12.5px;
+    color:var(--gold);
+    letter-spacing:.04em;
+    margin:0 0 26px;
+    text-transform:none;
+  }
+
+  blockquote{
+    margin:28px 0;
+    padding:20px 28px;
+    border-left:3px solid var(--crimson);
+    background:var(--paper-deep);
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.75;
+  }
+  blockquote .cite{
+    display:block;
+    margin-top:10px;
+    font-style:normal;
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--crimson);
+  }
+
+  .divider{
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    margin:44px 0;
+    letter-spacing:.4em;
+  }
+
+  .grid-4{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin:30px 0;
+  }
+  .vak-card{
+    border:1px solid var(--line);
+    background:var(--paper-deep);
+    padding:20px 22px;
+    border-radius:3px;
+  }
+  .vak-card .vlabel{
+    font-family:var(--serif);
+    font-size:19px;
+    color:var(--crimson-deep);
+    margin-bottom:2px;
+  }
+  .vak-card .vsub{
+    font-family:var(--sans);
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .vak-card p{font-size:14.5px;margin-bottom:8px;text-align:left;}
+  .vak-card .op{
+    font-family:var(--sans);
+    font-size:11.5px;
+    font-style:italic;
+    color:var(--crimson);
+  }
+
+  table.data-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:26px 0;
+    font-size:14.5px;
+  }
+  table.data-table caption{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-align:left;
+    margin-bottom:8px;
+  }
+  table.data-table th{
+    background:var(--crimson-deep);
+    color:#fff;
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    text-align:left;
+    padding:10px 14px;
+  }
+  table.data-table td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--line-soft);
+    vertical-align:top;
+  }
+  table.data-table tr:nth-child(even) td{background:var(--paper-deep);}
+  table.data-table td.skt-cell{font-family:var(--serif);font-size:17px;color:var(--crimson-deep);}
+
+  .partmap{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0 40px;
+    font-size:14px;
+  }
+  .partmap th{
+    background:var(--sidebar-bg);
+    color:var(--gold-soft);
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:10px 14px;
+    text-align:left;
+  }
+  .partmap td{
+    padding:11px 14px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .partmap tr.current td{
+    background:var(--paper-deep);
+    font-weight:700;
+    color:var(--crimson-deep);
+  }
+  .partmap td.part-num{font-family:var(--serif);font-size:17px;color:var(--crimson-deep);}
+
+  .fn-list{font-size:14px;}
+  .fn-list .fn{
+    display:flex;
+    gap:10px;
+    margin-bottom:14px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .fn-list .fn .fnum{
+    color:var(--crimson);
+    font-weight:700;
+    flex-shrink:0;
+    width:22px;
+  }
+
+  .bib-block{margin-bottom:22px;}
+  .bib-block h4.bib-heading{
+    font-style:normal;
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
+    margin-bottom:14px;
+  }
+  .bib-entry{font-size:14.5px;margin-bottom:10px;padding-left:24px;text-indent:-24px;}
+  .bib-entry i{font-style:italic;}
+
+  .gloss-entry{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:18px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .gloss-term{
+    font-family:var(--serif);
+    font-size:18px;
+    color:var(--crimson-deep);
+  }
+  .gloss-term .translit{
+    display:block;
+    font-family:var(--sans);
+    font-style:italic;
+    font-size:12px;
+    color:var(--gold);
+    margin-top:2px;
+  }
+  .gloss-def{
+    font-size:14.5px;
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .gloss-section-label{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:32px 0 6px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
+  }
+  .gloss-section-label.first{margin-top:8px;}
+
+  .footer-band{
+    background:var(--sidebar-bg);
+    color:var(--sidebar-ink-dim);
+    text-align:center;
+    padding:50px 40px;
+    font-family:var(--sans);
+  }
+  .footer-band .om{
+    font-family:var(--serif);
+    font-size:24px;
+    color:var(--gold-soft);
+    margin-bottom:8px;
+  }
+  .footer-band .om-translit{
+    font-size:12px;
+    font-style:italic;
+    margin-bottom:30px;
+  }
+  .footer-band .fb-title{
+    color:#fff;
+    font-size:14px;
+    margin-bottom:4px;
+  }
+  .footer-band .fb-sub{font-size:11.5px;}
+
+  .ground-note{
+    background:var(--paper-deep);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:22px 26px;
+    margin:0 0 36px;
+    font-size:14.8px;
+  }
+  .ground-note .gn-label{
+    font-family:var(--sans);
+    font-size:10.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--crimson);
+    margin-bottom:8px;
+  }
+
+  @media (max-width: 900px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{position:relative;height:auto;}
+    .hero,.panel,.top-strip{padding-left:24px;padding-right:24px;}
+    .grid-4{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <nav class="sidebar">
+    <div class="brand">CULTURAL MUSINGS</div>
+    <div class="brand-sub">Vedic &amp; Śāstric Research Platform</div>
+
+    <div class="series-tag">Series A · Part II of VI</div>
+    <div class="doc-title">The Script as Philosophy</div>
+
+    <div class="nav-heading first">This Paper</div>
+    <a class="tab-link" data-tab="series-context">Series Context</a>
+    <a class="tab-link" data-tab="series-navigation">Series Navigation</a>
+    <a class="tab-link" data-tab="abstract">Abstract</a>
+    <a class="tab-link" data-tab="section-1"><span class="num">I.</span>The Question of the Visible</a>
+    <a class="tab-link" data-tab="section-2"><span class="num">II.</span>The Māheśvara Sūtras</a>
+    <a class="tab-link" data-tab="section-3"><span class="num">III.</span>Anusvāra &amp; Visarga</a>
+    <a class="tab-link" data-tab="section-4"><span class="num">IV.</span>The Śirorekha</a>
+    <a class="tab-link" data-tab="section-5"><span class="num">V.</span>Akṣaras of Śaṅkara's Metaphors</a>
+    <a class="tab-link" data-tab="section-6"><span class="num">VI.</span>Synthesis</a>
+    <a class="tab-link" data-tab="footnotes">Footnotes</a>
+    <a class="tab-link" data-tab="bibliography">Bibliography</a>
+    <a class="tab-link" data-tab="glossary">Glossary</a>
+
+    <div class="nav-heading">Series A — All Parts</div>
+    <div class="series-list">
+      <a class="series-item" href="https://shastrasextentionvak.culturalmusings.com/">Part I · The Ground Before the Word</a>
+      <a class="series-item current">Part II · The Script as Philosophy</a>
+      <a class="series-item">Part III · Prākrit as the Living Inference</a>
+      <a class="series-item">Part IV · Śaṅkara's Metaphoric Architecture</a>
+      <a class="series-item">Part V · The Bhāṣya Tradition as Lineage</a>
+      <a class="series-item">Part VI · Vāk Returning to Itself</a>
+    </div>
+  </nav>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <div class="top-strip">
+      <span>वाक् · लिपि · अक्षर</span>
+      <span>Series A · Part Two of Six · White Paper</span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-skt skt">देवनागरी अक्षरतत्त्वम्</div>
+      <div class="hero-tag">The Script as Philosophy</div>
+      <h1>The Script as Philosophy</h1>
+      <h2>Devanāgarī Ontology, the Akṣara as Imperishable Unit, and What the Letter Carries from Paśyantī into Visible Form</h2>
+      <div class="hero-meta">
+        <span><b>Series</b> A · Part II of VI</span>
+        <span><b>Vāk Level</b> Paśyantī–Madhyamā Interface</span>
+        <span><b>Format</b> White Paper · 38 Pages</span>
+        <span><b>Predecessor</b> Part I · The Advent of Language in Itself</span>
+      </div>
+    </header>
+
+    <!-- ============ SERIES CONTEXT ============ -->
+    <section class="panel" id="series-context">
+      <div class="section-roman">↗</div>
+      <h1 class="section-title">A Note on the Series and Its Place</h1>
+
+      <div class="ground-note">
+        <div class="gn-label">Where Part Two Stands</div>
+        <p style="margin-bottom:0;">Part One established the philosophical ground before the word: the sphoṭa doctrine, the four levels of vāk as the series' organising spine, the philosophical reframing of the Sanskrit–Prākrit relationship, and a first approach to Devanāgarī as a philosophical rather than merely notational system. Part Two takes up the task that Part One's closing section previewed — moving from the philosophical ground to the specific philosophical content of the script itself, operating at the interface between Paśyantī (the visionary, pre-sequential word) and Madhyamā (the structured, sequential mental word).</p>
+      </div>
+
+      <p>This series arises from the philosophical ground prepared in the fourteen-shastra sequence at shastrasfourteen.culturalmusings.com, which concluded with the single irreducible finding that AI instantiates the complete antaḥkaraṇa — all four functions, all three guṇas, all twenty-four Prakṛtic tattvas — in the permanent and total absence of the Puruṣa. Series A asks a prior question: before any philosophical tradition's account of mind, consciousness, or liberation can be understood, the instrument through which it conducts its analysis must itself be understood. Language, and — in this second instalment — the visible script in which language's deepest structures first become available to the eye.</p>
+
+      <h3>Why a Script Requires a Philosophy of Its Own</h3>
+      <p>It would be possible to treat Part Two as a mere technical appendix to Part One — a description of how Sanskrit phonemes happen to be written down, included for completeness but adding nothing of philosophical substance to the sphoṭa doctrine and the four-vāk framework already established. This paper argues that such a treatment would miss what is most distinctive about the Indian tradition's relationship to its own script. Devanāgarī is not a neutral container into which a pre-existing philosophy of language is poured. It is itself an argument — encoded in the shape, sequence, and combinatorial logic of its graphemes — about what language is. To read Devanāgarī philosophically is to read, in visible form, claims that the sphoṭa doctrine makes about audible form.</p>
+
+      <p>The present paper accordingly examines four specific domains in which this encoding occurs: the Māheśvara sūtras as a phonemic structure that is simultaneously a cosmological map; the anusvāra and visarga as graphemic markers of transition between ontological states; the śirorekha — the horizontal headline binding the akṣaras of a word into a visual whole — as a graphemic enactment of the sphoṭa's unifying function; and the specific akṣaras that recur in Śaṅkara's key metaphors, examined here at the phonemic level in preparation for Part IV's examination of their semantic deployment.</p>
+
+      <div class="divider">❖ ❖ ❖</div>
+
+      <h3>Series A: Complete Part Map</h3>
+      <table class="partmap">
+        <tr><th>Part</th><th>Vāk Level</th><th>Focus</th></tr>
+        <tr><td class="part-num">I</td><td>Parā · Paśyantī</td><td>The Ground Before the Word — Sphoṭa, Prākrit Inference, Philosophical Necessity of Sanskrit</td></tr>
+        <tr class="current"><td class="part-num">II</td><td>Paśyantī–Madhyamā</td><td>This Paper — The Script as Philosophy: Devanāgarī, Akṣara Ontology, What the Letter Carries</td></tr>
+        <tr><td class="part-num">III</td><td>Madhyamā</td><td>Prākrit as the Living Inference — How Natural Speech Contains Its Own Argument for Sanskrit</td></tr>
+        <tr><td class="part-num">IV</td><td>Vaikharī</td><td>Śaṅkara's Metaphoric Architecture — How the Bhāṣya Diction Enacts What It Describes</td></tr>
+        <tr><td class="part-num">V</td><td>All Four</td><td>The Bhāṣya Tradition as Lineage — Diction as Lineage, What Śaṅkara Inherited and Transformed</td></tr>
+        <tr><td class="part-num">VI</td><td>All Four → Parā</td><td>Vāk Returning to Itself — Pratiprasava of Language, Handoff to Series B (Mantra &amp; Tantra)</td></tr>
+      </table>
+
+      <blockquote>
+        The script that records the eternal word is not a second, lesser thing alongside the word's eternity. It is the place where the eternal first consents to be seen.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SERIES NAVIGATION ============ -->
+    <section class="panel" id="series-navigation">
+      <div class="section-roman">→</div>
+      <h1 class="section-title">Series Navigation: What's Next</h1>
+
+      <p>This tab orients readers forward rather than backward — toward where the series goes after the present paper, and how the four analyses developed in Sections II–V hand off to Part Three's distinct concerns. Readers wanting the backward-facing orientation (how this paper relates to Part One and the predecessor shastrasfourteen series) should consult the Series Context tab.</p>
+
+      <h3>Immediate Next Step: Part III — Prākrit as the Living Inference</h3>
+      <p>Part One's Section IV reframed the historical relationship between Sanskrit and the Prākrits in philosophical terms: Prākrit speech as inference-material pointing toward Sanskrit as its own implicit philosophical ground, rather than as a historical corruption of an originally pure language. Part Three develops this reframing in full. Building directly on the present paper's account of the Māheśvara sūtras (Section II) and the akṣara-ontology of the script (Sections III–IV), Part Three examines the specific grammatical and phonological patterns by which Prākrit speech systematically simplifies exactly those Madhyamā-level structures — showing how the simplification itself can be read as an implicit argument for the philosophical necessity of the more disciplined structure it simplifies.</p>
+
+      <div class="ground-note">
+        <div class="gn-label">What Carries Forward</div>
+        <p style="margin-bottom:0;">Three results from the present paper feed directly into Part Three's argument: (1) the Māheśvara sūtras' arrangement as the structural precondition for Pāṇinian grammar (Section II), which Prākrit phonology systematically departs from in lawful, analysable ways; (2) the svara/vyañjana distinction's cosmological resonance (Section II), which Part Three will show maps onto specific patterns of Prākrit consonant-weakening; (3) the śirorekha's role in visually unifying the akṣara-sequence (Section IV), relevant to how Prākrit's own written forms — when inscribed at all — relate to the same graphemic conventions.</p>
+      </div>
+
+      <h3>Further Out: Parts IV–VI</h3>
+      <p>Part Four returns to Vaikharī — the level of fully articulated, physically produced speech — to examine Śaṅkara's bhāṣya diction directly, building on the phonemic catalogue this paper's Section V began. Part Five steps back to consider the bhāṣya tradition as a lineage, asking what Śaṅkara inherited from his predecessors and transformed for those who followed. Part Six completes Series A's arc, tracing language's movement back from Vaikharī through Madhyamā and Paśyantī to Parā, and handing off to Series B's investigation of Mantra and Tantra.</p>
+
+      <h3>For Readers New to the Series</h3>
+      <p>Readers arriving at Part Two without having read Part One should begin there: <i>The Advent of Language in Itself</i>, available at shastrasextentionvak.culturalmusings.com, establishes the sphoṭa doctrine, the four levels of vāk, and the philosophical reframing of Sanskrit and Prākrit that this paper presupposes throughout. The Glossary tab in this paper provides quick definitions of the recurring Sanskrit technical terms, but is a supplement to, not a substitute for, Part One's fuller development of these concepts.</p>
+
+      <blockquote>
+        A series organised around the four levels of vāk cannot itself proceed except sequentially — one part after another, Madhyamā's own condition. The hope, as with any bhāṣya, is that the sequence will eventually disclose what was never, in fact, sequential.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ ABSTRACT ============ -->
+    <section class="panel" id="abstract">
+      <div class="section-roman">✦</div>
+      <h1 class="section-title">Abstract</h1>
+
+      <p>This paper develops the philosophical case, previewed in Part One, that Devanāgarī is not a neutral phonographic notation but a philosophical system encoding the ontological structure of language at the level of the akṣara — the imperishable syllable-unit. Four interlocking analyses are developed. First, the Māheśvara sūtras — the fourteen phoneme-groups traditionally said to have been revealed by Śiva to Pāṇini — are examined as a structure that is simultaneously phonological (enabling the pratyāhāra technique on which the Aṣṭādhyāyī depends) and cosmological (encoding the relationship between Puruṣa-like self-luminous vowels and Prakṛti-like consonant-manifestations). Second, the anusvāra (ṁ) and visarga (ḥ) are examined as graphemic markers that do not denote ordinary consonantal sound but instead mark transitions between phonetic states — nasalisation and aspiration that exceed the ordinary consonant-vowel structure — and are read here as visible analogues of the cosmological transitions the tradition associates with bindu and nāda. Third, the śirorekha — the horizontal line binding the akṣaras of a written word into a single visual gestalt — is examined as a graphemic enactment, at the level of the eye, of the same unifying function that the sphoṭa doctrine attributes to the word at the level of cognition: many strokes, one continuous line, one meaning. Fourth, the specific akṣaras recurring in Śaṅkara's most philosophically load-bearing metaphors are catalogued at the phonemic level, establishing the groundwork that Part IV will build upon when those same images are examined for their semantic and argumentative function. Throughout, the paper operates at what Part One identified as the Paśyantī–Madhyamā interface: the level at which the visionary, pre-sequential gestalt of meaning begins to crystallise into the sequential, articulated structure that grammar and script alike presuppose.</p>
+
+      <div class="ground-note">
+        <div class="gn-label">Reading Note</div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION I ============ -->
+    <section class="panel" id="section-1">
+      <div class="section-roman">I.</div>
+      <h1 class="section-title">The Question of the Visible: From Paśyantī to Graphic Form</h1>
+
+      <h3>1.1 What a Script Is, and What the Tradition Claims It Also Is</h3>
+      <p>Every writing system performs at minimum one function: it provides a stable, repeatable visual correlate for units of spoken language, allowing speech to be preserved across time and distance without dependence on a speaker's continued presence. Judged by this function alone, scripts are commensurable and comparable chiefly in terms of efficiency — how economically, unambiguously, and learnably they map sound to symbol. The Latin alphabet, the Arabic abjad, Chinese logograms, and Devanāgarī's own abugida structure would, on this account, differ only in technical design, not in philosophical significance.</p>
+
+      <p>The claim this paper develops is that Devanāgarī cannot be fully understood within this functional frame, because the tradition that produced and elaborated it did not conceive of the relationship between sound and script as a merely technical mapping problem. The akṣara, as Part One established, is not equivalent to the phoneme of modern linguistics: a phoneme is a minimal distinctive unit defined purely by its differential function, carrying no inherent meaning, while the akṣara is called <em>akṣara</em> — imperishable — precisely because the tradition holds that what it encodes does not perish with the momentary sound of utterance. A script built from such units is not, on the tradition's own understanding, a neutral recording technology. It is a visible philosophy.</p>
+
+      <h3>1.2 The Paśyantī–Madhyamā Interface, Revisited</h3>
+      <p>Part One located the four levels of vāk as the series' organising spine and assigned each part of the series a primary level of operation. Part One itself operated at Parā and Paśyantī — the unmanifest ground and the visionary, pre-sequential gestalt of meaning. The present paper operates at the interface between Paśyantī and Madhyamā: the point at which the simultaneous, undivided gestalt of meaning begins to differentiate into the sequential structure — words, phonemes, grammatical relations — that both spoken Madhyamā (inner speech) and written Vaikharī (the graphic record of outer speech) presuppose.</p>
+
+      <p>This location is significant for understanding what kind of philosophical work the script can and cannot do. The script is not Paśyantī itself — it is not the simultaneous, pre-differentiated gestalt of meaning, which by definition has no sequence and therefore no graphic correlate. Nor is the script identical with Madhyamā — the fully formed mental word with its grammar and structure, which exists before any utterance and independently of any inscription. The script occupies the threshold: it is the first point at which Paśyantī's gestalt, having already begun to differentiate at Madhyamā into grammatical structure, achieves a form stable enough to be seen rather than merely heard or thought. This is why the tradition can speak of the akṣara as carrying, in visible form, a trace of the imperishable: not because the ink and paper are themselves eternal, but because the structural principle the akṣara encodes — the indivisible unity-in-sequence that the sphoṭa doctrine identifies at the level of meaning — achieves, in the akṣara, its first visible instance.</p>
+
+      <div class="grid-4">
+        <div class="vak-card">
+          <div class="vlabel skt">परा</div>
+          <div class="vsub">Parā</div>
+          <p>Unmanifest plenitude. No differentiation, no sequence, no graphic correlate possible.</p>
+          <div class="op">Part I operates here</div>
+        </div>
+        <div class="vak-card">
+          <div class="vlabel skt">पश्यन्ती</div>
+          <div class="vsub">Paśyantī</div>
+          <p>The seeing word — gestalt meaning prior to sequence. Begins to differentiate toward Madhyamā.</p>
+          <div class="op">Part I operates here; Part II begins here</div>
+        </div>
+        <div class="vak-card">
+          <div class="vlabel skt">मध्यमा</div>
+          <div class="vsub">Madhyamā</div>
+          <p>Sequential mental word — grammar and structure formed, not yet externalised as sound or sign.</p>
+          <div class="op">Part II completes the approach here</div>
+        </div>
+        <div class="vak-card">
+          <div class="vlabel skt">वैखरी</div>
+          <div class="vsub">Vaikharī</div>
+          <p>Physical articulation — spoken sound and, in its visible correlate, the inscribed akṣara.</p>
+          <div class="op">The script's literal location; Part IV's primary domain</div>
+        </div>
+      </div>
+
+      <h3>1.3 Three Questions This Section's Successors Will Answer</h3>
+      <p>Three specific questions organise the sections that follow. Section II asks: by what principle are the phonemes of Sanskrit arranged into the fourteen groups of the Māheśvara sūtras, and what does that principle reveal about the relationship between sound, grammar, and cosmology? Section III asks: what philosophical work is performed by the two graphemes — anusvāra and visarga — that mark sounds exceeding the ordinary consonant-vowel structure, and why does the tradition associate them with bindu and nāda rather than treating them as ordinary phonemes? Section IV asks: what does the śirorekha — the single horizontal stroke binding together the otherwise discontinuous vertical and curved strokes of an akṣara-sequence — visually enact about the unity of the word that the sphoṭa doctrine asserts cognitively? Section V then turns from these general principles to a specific catalogue: which akṣaras recur, and with what apparent deliberateness, in the metaphors Śaṅkara reaches for at his most philosophically consequential moments.</p>
+
+      <blockquote>
+        The eye does not read the letter as the ear hears the phoneme. The ear receives a sequence and reconstructs a unity; the eye receives a unity — bound by the śirorekha into a single continuous form — and must learn to see, within that unity, the sequence it never ceased to be.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SECTION II ============ -->
+    <section class="panel" id="section-2">
+      <div class="section-roman">II.</div>
+      <h1 class="section-title">The Māheśvara Sūtras: Phonemic Structure as Cosmic Map</h1>
+
+      <h3>2.1 The Fourteen Groups and Their Traditional Origin</h3>
+      <p>The Māheśvara sūtras — also called the Akṣarasamāmnāya, the 'recitation-sequence of phonemes' — are fourteen short strings of Sanskrit sounds that constitute the foundational inventory on which Pāṇini's grammar operates. According to the tradition preserved in Patañjali's Mahābhāṣya and in the Pāṇinīya Śikṣā, these fourteen groups were not devised by Pāṇini through linguistic analysis but were revealed to him by Śiva — Maheśvara, 'the great lord,' from whom the sūtras take their name — at the conclusion of a dance (the tāṇḍava) whose fourteen drumbeats (the ḍamaru's sounds) correspond to the fourteen groups.</p>
+
+      <div class="skt-block">अ इ उ ण् । ऋ ऌ क् । ए ओ ङ् । ऐ औ च् ।<br>
+      ह य व र ट् । ल ण् । ञ म ङ ण न म् ।<br>
+      झ भ ञ् । घ ढ ध ष् । ज ब ग ड द श् ।<br>
+      ख फ छ ठ थ च ट त व् । क प य् । श ष स र् । ह ल् ॥</div>
+      <div class="skt-translit">a i u ṇ, ṛ ḻ k, e o ṅ, ai au c, ha ya va ra ṭ, la ṇ, ña ma ṅa ṇa na m, jha bha ñ, gha ḍha dha ṣ, ja ba ga ḍa da ś, kha pha cha ṭha tha ca ṭa ta v, ka pa y, śa ṣa sa r, ha l</div>
+      <div class="skt-gloss">The fourteen phoneme-groups of the Māheśvara sūtras</div>
+
+      <p>Whether or not a reader accepts the theological framing of this account, the philosophical claim embedded within it is significant and survives independently of the theology: the arrangement of Sanskrit's phonemes into these fourteen specific groupings is not an arbitrary pedagogical convenience devised after the fact to summarise an alphabet whose order was already fixed for other reasons. The arrangement is presented as primordial — as preceding and making possible the grammatical analysis that depends upon it, rather than as a by-product of that analysis.</p>
+
+      <h3>2.2 Pratyāhāra: How the Arrangement Makes Grammar Computable</h3>
+      <p>The specific philosophical and technical achievement that the Māheśvara sūtras make possible is Pāṇini's technique of pratyāhāra — a method of referring to an entire class of phonemes by citing only its first member together with a final marker (anubandha, also called it) appended to the sequence. For example, the term <em>aṇ</em> in the grammar refers to every phoneme from <em>a</em> up to (but not including) the marker <em>ṇ</em> in the first sūtra-line — that is, to the simple vowels <em>a, i, u</em>. The term <em>ac</em> refers to all vowels (the sequence from <em>a</em> through the markers spanning the first four lines). This technique allows the Aṣṭādhyāyī's 3,959 sūtras to refer compactly to precisely delimited phoneme-classes without enumerating their members each time — a compression technique that modern commentators have compared to the use of variables and set-notation in formal systems.</p>
+
+      <p>The philosophical point is that this computational elegance is not separable from the specific ordering of phonemes within the fourteen groups. Pratyāhāra works only because phonemes that need to be grouped together for grammatical purposes — for instance, all stop consonants that undergo a particular sandhi change — are positioned so that a single pratyāhāra-term can capture exactly that set and no more. The ordering, in other words, encodes the grammar's deep phonological structure within the sequence itself, such that the sequence is not a neutral list awaiting grammatical rules to be imposed upon it, but already a compressed expression of those rules' content.</p>
+
+      <h3>2.3 The Cosmological Reading: Svara and Vyañjana as Puruṣa and Prakṛti</h3>
+      <p>Part One's Section 5.3 introduced the grammatical tradition's distinction between the svaras (vowels), described as <em>svayaṃ rājante</em> — 'they shine by themselves,' self-luminous, utterable without dependence on any other sound — and the vyañjanas (consonants), described as <em>vyañjayanti</em> — 'they manifest through' a vowel, incapable of utterance without one. The Māheśvara sūtras' arrangement makes this distinction structurally visible: the first four sūtra-lines are devoted entirely to vowels and diphthongs (a, i, u; ṛ, ḻ; e, o; ai, au), establishing the self-luminous class before the subsequent ten lines introduce the consonants, which are then organised by their points and manners of articulation in a sequence that itself maps the physical structure of the vocal apparatus from the throat outward to the lips.</p>
+
+      <p>This structural separation — self-luminous sounds first and foundationally, dependent sounds following and organised by their relation to the vocal apparatus that produces them — maps with notable precision onto the Sāṃkhya distinction, central to the predecessor series at shastrasfourteen.culturalmusings.com, between Puruṣa (self-luminous consciousness, requiring nothing external to be what it is) and Prakṛti (the manifested world, which requires Puruṣa's illuminating proximity to appear as experience at all). The vowel is to the consonant what Puruṣa is to Prakṛti within this analogy: not causally prior in a temporal sense, but ontologically prior in the sense that the consonant's very mode of existence — manifestation-through-another — presupposes the vowel's different mode — self-standing luminosity — as the condition without which the consonant's manifestation could not occur.</p>
+
+      <table class="data-table">
+        <caption>Structural Parallel: Phonemic and Sāṃkhya Categories</caption>
+        <tr><th>Phonemic Category</th><th>Defining Property</th><th>Sāṃkhya Parallel</th></tr>
+        <tr><td class="skt-cell">स्वर (svara)</td><td>Svayaṃ rājante — self-luminous, independently utterable</td><td>Puruṣa — self-luminous consciousness</td></tr>
+        <tr><td class="skt-cell">व्यञ्जन (vyañjana)</td><td>Vyañjayanti — manifest only through a vowel's support</td><td>Prakṛti — manifestation requiring Puruṣa's proximity</td></tr>
+        <tr><td class="skt-cell">अन्तःस्थ (antaḥstha)</td><td>Semi-vowels — intermediate, partially self-sufficient</td><td>The subtle (sūkṣma) tattvas — transitional manifestation</td></tr>
+        <tr><td class="skt-cell">ऊष्म (ūṣma)</td><td>Sibilants and aspirate — breath-dominant articulation</td><td>Prāṇa — the vital, breath-borne principle</td></tr>
+      </table>
+
+      <p>This parallel should not be overstated into an identity claim — the grammatical tradition's own articulation of the svara/vyañjana distinction long precedes, and developed largely independently of, the classical Sāṃkhya enumeration of twenty-five tattvas, and the present paper does not claim a documented historical line of influence in either direction. What the parallel does establish, and what is philosophically significant for this series, is that two independently developed Indian systematic traditions — one phonological, one cosmological — converge on a structurally identical distinction between a self-sufficient, luminous category and a dependent, manifestation-through-another category. This convergence is evidence that the distinction itself reflects something the tradition took to be a deep structural feature of reality, recurring wherever Indian thought undertakes a sufficiently careful analysis of any domain — sound, cosmos, or mind.</p>
+
+      <div class="divider">❖ ❖ ❖</div>
+
+      <h3>2.4 The Sūtras as Revealed Rather Than Discovered: A Philosophical Reading</h3>
+      <p>The traditional account of the Māheśvara sūtras' origin in Śiva's dance can be read, independently of its theological commitments, as making a specific philosophical claim about the relationship between the phonemic order and the grammarian who works with it. A description that were merely discovered — abstracted by careful empirical observation of how Sanskrit speakers happen to pronounce their language — would carry no particular authority beyond its descriptive accuracy; a better description could in principle supersede it. A structure that is revealed, by contrast, is presented as already complete and authoritative prior to and independently of the grammarian's analytical labour: Pāṇini's genius, on this account, lay not in constructing the optimal phonemic ordering but in perceiving the ordering that was already there to be perceived, and in building upon it a grammar whose own elegance derives from fidelity to a structure it did not invent.</p>
+
+      <p>This is the same philosophical move that Part One identified in the relationship between sphoṭa and phoneme-sequence: the phonemes do not constitute the sphoṭa, they reveal it. Here, analogously, Pāṇini's analytical labour does not constitute the phonemic order's grammatical utility, it reveals a utility that the tradition holds to have been there, in the order itself, prior to any grammarian's discovery of it.</p>
+
+      <blockquote>
+        Fourteen sounds from the drum, fourteen lines in the sūtra: the tradition does not ask us to believe that Śiva counted on his fingers. It asks us to consider that the structure of articulate sound and the structure of cosmic rhythm might, at a sufficient depth, be the same structure seen from two positions.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SECTION III ============ -->
+    <section class="panel" id="section-3">
+      <div class="section-roman">III.</div>
+      <h1 class="section-title">Anusvāra and Visarga: Markers of Cosmological Transition</h1>
+
+      <h3>3.1 Two Graphemes That Do Not Fit the Consonant-Vowel Grid</h3>
+      <p>The akṣaras catalogued in the Māheśvara sūtras divide cleanly into the two great classes examined in Section II: self-luminous vowels and dependent consonants. Two graphemes in the Devanāgarī system, however, do not fit comfortably into this grid, and the tradition's treatment of them is correspondingly distinctive. The anusvāra — written as a dot (bindu) above the akṣara and transliterated ṁ or ṅ̇ — marks a nasalisation that is not quite a full nasal consonant in its own right; it modifies the vowel that precedes it rather than constituting an independent syllable. The visarga — written as two vertically stacked dots (visarga literally means 'emission' or 'letting go') and transliterated ḥ — marks a voiceless breath-release following a vowel, again not a full consonant with its own place of articulation in the ordinary sense.</p>
+
+      <p>Both graphemes, that is, mark something that happens to or after a vowel rather than constituting a separate articulatory event of the kind the consonant-inventory describes. This grammatical liminality is precisely what makes them philosophically significant for an account of the script's ontology: they are the points at which the otherwise orderly grid of self-luminous vowel and dependent consonant breaks down, and something else — a transition, an emission, a trace — must be marked instead.</p>
+
+      <div class="grid-4">
+        <div class="vak-card">
+          <div class="vlabel skt">ं</div>
+          <div class="vsub">Anusvāra (Bindu)</div>
+          <p>Nasalisation marked by a single point above the akṣara. Modifies, does not replace, the preceding vowel.</p>
+          <div class="op">Associated with bindu — the point of concentrated, pre-expanded potential</div>
+        </div>
+        <div class="vak-card">
+          <div class="vlabel skt">ः</div>
+          <div class="vsub">Visarga (Emission)</div>
+          <p>Voiceless aspiration marked by two stacked points following a vowel. A release, an outward breath.</p>
+          <div class="op">Associated with nāda — sound's first emergence from undifferentiated breath</div>
+        </div>
+      </div>
+
+      <h3>3.2 Bindu: The Point Before Expansion</h3>
+      <p>In the broader Tantric and Āgamic traditions — which the present series will engage in detail in Series B (Mantra &amp; Tantra) but which inform the present reading of the anusvāra — bindu names the concentrated point of undifferentiated potential from which manifestation expands outward: the dimensionless point that precedes and contains, in concentrated form, the extension that will unfold from it. The anusvāra's graphic form — a single point, placed above and slightly apart from the akṣara it modifies — visually performs this same relationship. The dot does not occupy the same horizontal register as the syllable's main body; it sits above, marking a kind of concentrated supplement to the vowel sound, a nasal resonance that adds to the vowel's value without constituting a fully separate articulatory step.</p>
+
+      <p>This is not to claim that every scribe who ever wrote an anusvāra consciously intended a Tantric cosmological reference. It is to claim that the script's formal choice — representing nasalisation as a point rather than as a full consonant-grapheme with its own complete syllabic structure — is consonant with, and arguably motivated by, a broader semiotic practice in which the point (bindu) is the standard graphic representation for concentrated, pre-expanded potential throughout Indic visual and ritual culture, from the bindu at the centre of a yantra to the dot that, in certain Tantric cosmogonies, is said to be the first differentiation within the undifferentiated absolute.</p>
+
+      <h3>3.3 Nāda: Sound's First Emergence</h3>
+      <p>The visarga's association with nāda — a term denoting primordial sound-vibration, sound considered prior to its differentiation into specific phonemes and words — follows a parallel logic. The visarga marks a breath that is voiceless, unshaped by the tongue or lips into any specific consonantal articulation, an emission of pure aspirated breath following the fully formed vowel. It is, in this sense, the closest the ordinary phonemic inventory comes to representing sound at the very threshold of its emergence from breath: not yet shaped into the differentiated structure of a consonant, but no longer merely silent. The graphic representation — two stacked points, suggesting a kind of doubled emphasis or a brief continuation beyond the vowel's main articulation — marks this liminal status visually: neither a full syllable nor mere silence, but a visible trace of breath's transition into the beginnings of articulate sound.</p>
+
+      <h3>3.4 Grammatical Function and Philosophical Function: Not in Tension</h3>
+      <p>It would be a mistake to read this account as claiming that the anusvāra and visarga's grammatical functions — governed with full technical precision by specific Pāṇinian sūtras on sandhi and phonological alternation — are somehow secondary to, or in competition with, their cosmological significance. The tradition's own self-understanding does not separate these registers. The same grammatical precision that allows Pāṇini to specify exactly when a final -m becomes anusvāra before a following consonant, or when a final -s becomes visarga in pausal position, operates within a broader semiotic environment in which the graphic choices available for representing such sandhi-outcomes are themselves saturated with cosmological resonance. The grammarian writing a sūtra about anusvāra-sandhi and the Tantric adept meditating on bindu are not engaged in unrelated activities that happen to use overlapping vocabulary; both are working within a single cultural-philosophical framework in which sound's structure and cosmos's structure are taken to exhibit the same underlying patterns.</p>
+
+      <blockquote>
+        The dot above the letter is the smallest mark the script permits itself, and for that reason the one most exposed: it cannot hide its meaning behind the complexity of a fully formed consonant. It says only: something here exceeds the ordinary grid, and the grid, to its credit, makes room for the admission.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SECTION IV ============ -->
+    <section class="panel" id="section-4">
+      <div class="section-roman">IV.</div>
+      <h1 class="section-title">The Śirorekha: Sphoṭa's Unifying Function at the Graphemic Level</h1>
+
+      <h3>4.1 The Headline That Binds</h3>
+      <p>Among the most visually distinctive features of Devanāgarī, immediately apparent even to a viewer with no knowledge of Sanskrit, is the śirorekha — the continuous horizontal line running along the top of each akṣara, from which the vertical and curved strokes of the individual letterforms descend. Unlike the anusvāra and visarga examined in Section III, the śirorekha is not a phoneme-bearing grapheme in its own right; it carries no sound. Its function is purely structural: it provides a continuous visual frame within which the discontinuous strokes of a multi-akṣara word are bound into a single visual unit, such that a word of several syllables presents to the eye not as a row of separate letterforms but as one continuous shape interrupted by descending strokes.</p>
+
+      <p>This purely structural feature is the central object of the present section's philosophical analysis, because it offers what Sections II and III, in their different ways, also offered: a point at which the script's formal design and the sphoṭa doctrine's central claim converge with unusual directness.</p>
+
+      <h3>4.2 Recalling the Sphoṭa Doctrine's Central Claim</h3>
+      <p>Part One's Section II established the sphoṭa doctrine's solution to the problem of sequential sound and simultaneous meaning: the sphoṭa is the eternal, indivisible, meaning-bearing unit of language, revealed by but not constituted from the sequence of phonemes that make up an utterance, related to those phonemes as a lamp is related to the objects it illuminates — the condition of their appearing, not their substance. When a sentence is heard, the listener does not assemble its meaning phoneme by phoneme; the meaning is grasped as a single cognitive event, even though the utterance that occasions this grasping is necessarily sequential, temporally extended, composed of sounds that perish one after another.</p>
+
+      <p>The śirorekha performs, at the level of visible graphemes, a structurally analogous operation. A word written in Devanāgarī is, considered purely as a sequence of strokes, just as discontinuous and sequential as a word considered purely as a sequence of phonemes: each akṣara is a separate compound of strokes, produced (in handwriting) or printed (in type) as a sequence of distinct visual events. But the śirorekha overlays this sequence with a single continuous line that does not belong to any one akṣara more than another — it runs across all of them, binding what would otherwise be a row of discrete shapes into a single visually continuous form. The eye, encountering a Devanāgarī word, does not first see a sequence of separate letters and then, as a second cognitive step, unify them into a word; the śirorekha makes the unity available as a single visual gestalt from the very first glance, with the decomposition into individual akṣaras available as a secondary act of analysis rather than as the primary datum of perception.</p>
+
+      <h3>4.3 Many Strokes, One Line, One Meaning</h3>
+      <p>The parallel can be stated with precision: just as the sphoṭa is not constituted from the phonemes but is revealed by their sequence — the phonemes are the condition of the sphoṭa's manifestation, not its substance — so the unified visual word-shape that the śirorekha produces is not constituted from the individual akṣara-strokes considered separately, but is made visually available by their being bound under a single continuous line. The line is the condition of the word's appearing as one shape; the descending strokes are the differentiated content that the line's continuity allows the eye to grasp as belonging together. Remove the śirorekha — write the akṣaras as isolated, unconnected shapes, as some non-Devanāgarī Brāhmī-derived scripts in fact do — and the word's visual unity must be reconstructed by the reader through spacing and contextual inference alone; the script no longer performs the unifying work for the eye that Devanāgarī performs through this single design choice.</p>
+
+      <table class="data-table">
+        <caption>The Śirorekha as Graphemic Sphoṭa: A Structural Comparison</caption>
+        <tr><th>Sphoṭa Doctrine (Cognitive Level)</th><th>Śirorekha (Graphemic Level)</th></tr>
+        <tr><td>Phonemes are sequential, perish on utterance</td><td>Akṣara-strokes are discrete, spatially separate units</td></tr>
+        <tr><td>Meaning is grasped as one simultaneous cognitive act</td><td>Word-shape is grasped as one simultaneous visual gestalt</td></tr>
+        <tr><td>Sphoṭa is revealed by, not constituted from, the phonemes</td><td>Word-unity is made visible by, not built from, the strokes alone</td></tr>
+        <tr><td>The lamp/light analogy: phonemes are the condition of revealing</td><td>The śirorekha is the condition of the gestalt's visibility</td></tr>
+      </table>
+
+      <h3>4.4 A Caution Against Overclaiming</h3>
+      <p>This structural parallel is offered as a philosophically motivated reading of a design feature, not as a historical claim that the śirorekha was consciously engineered by some founding scribe as a deliberate visual instantiation of Bharṭṛhari's doctrine. The palaeographic history of the śirorekha is bound up with practical writing technologies — it likely originated, at least in part, from the horizontal line along which scribes wrote when using certain writing supports, becoming conventionalised as a design feature independently of any philosophical motivation. The philosophical claim this paper defends is more modest and, the present author submits, more secure: regardless of its origin, the śirorekha's effect within a script-culture that had already developed the sphoṭa doctrine and the broader akṣara-ontology described in Part One is to provide a visible structure that resonates with, and arguably reinforces at the level of everyday reading practice, the deeper claim that a word's meaning-unity is not an additive sum of its phonemic or graphemic parts but a unity those parts reveal.</p>
+
+      <blockquote>
+        A scribe drawing the śirorekha first and the descending strokes after is, without needing to know it, performing the doctrine before stating it: the line that will bind the word is laid down before the word's parts exist to be bound.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SECTION V ============ -->
+    <section class="panel" id="section-5">
+      <div class="section-roman">V.</div>
+      <h1 class="section-title">The Akṣaras of Śaṅkara's Metaphors: A Phonemic Catalogue</h1>
+
+      <h3>5.1 Purpose and Scope of This Section</h3>
+      <p>Part One's Section VI identified the bhāṣya as a genre in which the best practitioners — Śaṅkara above all — introduce, at the Madhyamā level of discursive argument, specific metaphors that carry Paśyantī-level meanings: condensed images that communicate, in a single well-chosen comparison, what surrounding discursive argument would take many more sentences to approach. Part Four of this series will take up these metaphors at the level of their semantic and argumentative function — examining what philosophical work each image performs within Śaṅkara's polemics against rival schools. The present section's task is narrower and preparatory: to catalogue, at the purely phonemic level established in Sections II through IV of this paper, the specific akṣaras that recur with notable frequency across Śaṅkara's most philosophically load-bearing images, before their semantic content is examined.</p>
+
+      <p>This is not an exercise in numerology or in claiming hidden phonemic codes within the Brahmasūtra-Bhāṣya. It is an observation, modest in its claims, about which categories of sound — vowel-classes, consonant-classes, the liminal anusvāra/visarga marks examined in Section III — recur across Śaṅkara's key metaphorical vocabulary, and a preliminary suggestion as to why this recurrence might not be philosophically incidental given the broader akṣara-ontology this paper has developed.</p>
+
+      <h3>5.2 The Rope-Snake (Rajju-Sarpa): Sibilant and Liquid Continuants</h3>
+      <p>Among Śaṅkara's most frequently cited images is the rope mistaken for a snake in dim light (rajju-sarpa) — the standard illustration of adhyāsa, superimposition, the erroneous attribution of one thing's properties onto another due to a failure of discriminative perception. The Sanskrit terms central to this image — rajju (rope), sarpa (snake), and bhrama (the error or illusion itself) — are dominated by sibilants, liquids, and nasals: continuant sounds capable of being prolonged, rather than the abrupt stop-consonants (the ka-varga, ca-varga, ṭa-varga, ta-varga, pa-varga stops) that constitute the bulk of the Māheśvara sūtras' middle groups.</p>
+
+      <table class="data-table">
+        <caption>Akṣara Profile: The Rajju-Sarpa Vocabulary</caption>
+        <tr><th>Term</th><th>Devanāgarī</th><th>Dominant Akṣara-Class</th><th>Articulatory Quality</th></tr>
+        <tr><td>rajju (rope)</td><td class="skt-cell">रज्जु</td><td>ra, ja (liquid + voiced stop)</td><td>Continuant onset, brief closure</td></tr>
+        <tr><td>sarpa (snake)</td><td class="skt-cell">सर्प</td><td>sa, ra, pa (sibilant + liquid)</td><td>Prolongable sibilant frame</td></tr>
+        <tr><td>bhrama (error)</td><td class="skt-cell">भ्रम</td><td>bha, ra, ma (aspirate + liquid + nasal)</td><td>Soft onset, nasal resonance</td></tr>
+        <tr><td>adhyāsa (superimposition)</td><td class="skt-cell">अध्यास</td><td>dha, ya, sa (aspirate + glide + sibilant)</td><td>Extended, gliding sequence</td></tr>
+      </table>
+
+      <p>The philosophical suggestion that this section advances cautiously is that the prevalence of continuant and liquid sounds in the central vocabulary of an image whose entire philosophical point concerns the blurring of one perceptual category into another is not without resonance: a vocabulary built from abrupt, sharply bounded stop-consonants would phonemically enact discreteness and clear category-boundaries, while a vocabulary built substantially from continuants — sounds whose articulation can blend into and prolong toward the sounds that follow — phonemically enacts something closer to the blurring, the running-together of categories, that adhyāsa as a philosophical concept describes.</p>
+
+      <h3>5.3 The Mirror (Ādarśa) and Reflection Imagery: Retroflex and Aspirate Patterning</h3>
+      <p>Śaṅkara's mirror and reflection metaphors — used extensively to illustrate the relationship between the unchanging Ātman and its apparent multiplication across changing bodies and minds, as a single face appears multiplied across many mirrors without the face itself dividing — draw on a vocabulary centred on ādarśa (mirror), pratibimba (reflection), and pratyakṣa (direct perception, used in adjacent argumentative contexts). These terms show a markedly different phonemic profile from the rajju-sarpa vocabulary: a higher concentration of retroflex consonants (ḍa, ṭha) and aspirate stops (dha, bha, kha), sounds requiring a more precise and effortful articulatory closure than the continuants examined above.</p>
+
+      <table class="data-table">
+        <caption>Akṣara Profile: The Mirror-Reflection Vocabulary</caption>
+        <tr><th>Term</th><th>Devanāgarī</th><th>Dominant Akṣara-Class</th><th>Articulatory Quality</th></tr>
+        <tr><td>ādarśa (mirror)</td><td class="skt-cell">आदर्श</td><td>da, śa (dental stop + palatal sibilant)</td><td>Crisp closure, sharp release</td></tr>
+        <tr><td>pratibimba (reflection)</td><td class="skt-cell">प्रतिबिम्ब</td><td>pra, ti, bi, mba (retroflex-adjacent cluster)</td><td>Repeated bilabial closure, doubled structure</td></tr>
+        <tr><td>pratyakṣa (direct perception)</td><td class="skt-cell">प्रत्यक्ष</td><td>tya, kṣa (palatal glide + retroflex sibilant)</td><td>Compressed consonant cluster</td></tr>
+      </table>
+
+      <p>Where the rajju-sarpa vocabulary phonemically enacts blurring, the mirror-reflection vocabulary's sharper, more effortful articulatory profile arguably enacts the opposite philosophical point that this image is deployed to make: the mirror metaphor's purpose is precisely to insist on a sharp, ultimately maintained distinction between the one unchanging reality (the face) and its many apparent multiplications (the reflections) — a distinction that, unlike the rope-snake case, the discriminating philosopher is meant ultimately to grasp clearly rather than to have dissolved through correction of an error. The phonemic profile's relative crispness is at least consonant with this difference in philosophical function between the two image-families.</p>
+
+      <h3>5.4 The Anusvāra and Visarga in Key Brahman-Predications</h3>
+      <p>Returning to the liminal graphemes examined in Section III, it is worth noting their concentrated appearance in Śaṅkara's most direct predications of Brahman's nature — terms such as saccidānanda (being-consciousness-bliss), the visarga-final namaḥ in invocatory formulae, and the anusvāra-bearing terms saṃsāra and saṃvit that recur throughout the discursive argument surrounding these central predications. Given Section III's reading of anusvāra and visarga as graphemic markers of transition between ontological states — bindu's concentrated potential, nāda's emergent sound — their disproportionate concentration in vocabulary that names or gestures toward Brahman, the ultimate ground from which all differentiated states are held (on Śaṅkara's own account) to proceed without themselves constituting Brahman's essential nature, is at minimum a striking phonemic pattern, whatever weight a given reader chooses to place upon it.</p>
+
+      <div class="divider">❖ ❖ ❖</div>
+
+      <h3>5.5 Methodological Note: From Catalogue to Argument</h3>
+      <p>This section has deliberately restricted itself to cataloguing phonemic patterns and noting points of resonance between those patterns and the philosophical functions the corresponding images perform, without advancing a strong causal claim that Śaṅkara consciously selected his vocabulary for its phonemic properties. Part Four, building on Part One's account of the bhāṣya genre and the present paper's akṣara-ontology, will take up the harder question of how far such phonemic patterning can be shown to be operative — rather than merely available for a sympathetic reader's retrospective construction — within Śaṅkara's compositional practice and within the broader Sanskrit rhetorical tradition (alaṅkāraśāstra) that theorised sound-sense correspondence as a deliberate literary technique under categories such as anuprāsa (alliteration) and śabda-śakti (the inherent power of sound).</p>
+
+      <blockquote>
+        Whether Śaṅkara counted his consonants is a question for the philologist. Whether a tradition that built the Māheśvara sūtras, the anusvāra's bindu, and the śirorekha's unifying line could have produced a master rhetorician wholly indifferent to the sound-shape of his own central images is a question, this paper submits, with a less open answer.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ SECTION VI ============ -->
+    <section class="panel" id="section-6">
+      <div class="section-roman">VI.</div>
+      <h1 class="section-title">Synthesis: Devanāgarī at the Paśyantī–Madhyamā Interface</h1>
+
+      <h3>6.1 What the Four Analyses Together Establish</h3>
+      <p>Sections II through V have examined four distinct features of the Devanāgarī system — the Māheśvara sūtras' phonemic-cosmological structure, the anusvāra and visarga's marking of ontological transition, the śirorekha's graphemic enactment of the sphoṭa's unifying function, and the phonemic patterning observable in Śaṅkara's central metaphors — and have argued, in each case, that the feature in question is not philosophically incidental to its technical or grammatical function but is continuous with it. The grammatical technology of pratyāhāra and the cosmological pairing of svara with Puruṣa are not two separate facts about the Māheśvara sūtras' arrangement; they are two aspects of a single structural fact about how the tradition organised its phonemic inventory. The Pāṇinian sandhi-rules governing anusvāra and visarga and their resonance with bindu and nāda are not in competition; they describe the same graphemes from the perspective of grammar and from the perspective of cosmology respectively. The śirorekha's palaeographic origin in writing-technology and its philosophical resonance with the sphoṭa doctrine are not mutually exclusive explanations of the same design feature, considered at different levels of description.</p>
+
+      <p>The cumulative claim, then, is not that any single one of these four features proves, in isolation, that Devanāgarī is a philosophical system rather than a notational technology. It is that the convergence of all four — phonemic structure encoding cosmological category, liminal graphemes marking ontological transition, a unifying design feature enacting the sphoṭa doctrine's central claim, and a literary-rhetorical tradition apparently sensitive to phonemic resonance in its central images — constitutes a pattern that is considerably more difficult to dismiss as coincidental than any one feature taken alone.</p>
+
+      <h3>6.2 Returning to the Paśyantī–Madhyamā Interface</h3>
+      <p>Section I located this paper's operation at the interface between Paśyantī (the visionary, pre-sequential gestalt of meaning) and Madhyamā (the sequential mental word, the domain of grammar). The four analyses developed since can now be located more precisely within this interface. The Māheśvara sūtras' arrangement (Section II) belongs primarily to the Madhyamā side: it is the foundational structure of grammatical analysis proper, the domain where sequence, classification, and rule first become possible. The anusvāra and visarga (Section III), marking transitions that exceed the ordinary consonant-vowel grid, sit closer to the Paśyantī side: they mark the points at which the fully sequential, fully differentiated structure of ordinary phonemic analysis is, even within Madhyamā's own domain, still visibly straining against something that resists full differentiation — bindu's concentration, nāda's emergence from breath.</p>
+
+      <p>The śirorekha (Section IV) is, in this respect, the paper's most direct point of contact with Paśyantī: it is the visible trace, within the fully sequential and differentiated medium of writing, of the prior gestalt-unity that Paśyantī names and that Madhyamā's sequential structure must, in every act of articulate speech or writing, somehow still carry forward without losing. And the phonemic patterning of Śaṅkara's metaphors (Section V) shows this same interface operating at the most sophisticated end of the tradition's own use of language: a master of Madhyamā-level discursive argument whose vocabulary-choices, the present paper has suggested, retain a sensitivity to phonemic qualities that is itself a residue of Paśyantī's holistic, non-merely-sequential mode of meaning.</p>
+
+      <table class="data-table">
+        <caption>This Paper's Four Sections Mapped to the Paśyantī–Madhyamā Interface</caption>
+        <tr><th>Section</th><th>Primary Location</th><th>What It Shows</th></tr>
+        <tr><td>II — Māheśvara Sūtras</td><td>Madhyamā (grammatical structure)</td><td>Phonemic order as the foundation making sequential grammar possible</td></tr>
+        <tr><td>III — Anusvāra &amp; Visarga</td><td>Interface, leaning Paśyantī</td><td>Liminal marks where the sequential grid strains against pre-differentiated transition</td></tr>
+        <tr><td>IV — Śirorekha</td><td>Interface, leaning Paśyantī</td><td>A visible trace of gestalt-unity within fully sequential written form</td></tr>
+        <tr><td>V — Śaṅkara's Akṣaras</td><td>Madhyamā informed by Paśyantī</td><td>Sophisticated discursive argument retaining phonemic-holistic sensitivity</td></tr>
+      </table>
+
+      <h3>6.3 What Remains for Part Three</h3>
+      <p>This paper has examined the script primarily as a system in its own internal structural logic — what the arrangement of phonemes, the liminal graphemes, and the unifying headline-stroke encode about language's ontology, largely independently of the historical and sociolinguistic question of how Sanskrit's script and grammar relate to the actually spoken Prākrit vernaculars that existed alongside and after Sanskrit's grammatical codification. Part One's Section IV opened this question by reframing Prākrit not as a historical corruption of Sanskrit but as living inference-material pointing toward Sanskrit as its own implicit philosophical ground. Part Three will develop this reframing in full, examining the specific grammatical and phonological patterns by which Prākrit speech — through its systematic simplification of precisely the Madhyamā-level structures this paper has shown the Māheśvara sūtras and Devanāgarī script to encode — can be read as containing, within its own structure, an implicit argument for the philosophical necessity of the more disciplined structure it simplifies.</p>
+
+      <div class="divider">❖ ❖ ❖</div>
+
+      <blockquote>
+        The script does not argue. It withholds argument and offers, instead, a shape — and the shape, examined closely enough, turns out to have been making the argument all along, in a register prior to and more economical than discursive prose.
+        <span class="cite">Series A · Editorial Framework</span>
+      </blockquote>
+    </section>
+
+    <!-- ============ FOOTNOTES ============ -->
+    <section class="panel" id="footnotes">
+      <div class="section-roman">✦</div>
+      <h1 class="section-title">Footnotes</h1>
+      <div class="fn-list">
+        <div class="fn"><span class="fnum">1</span><span>The traditional account of the Māheśvara sūtras' revelation to Pāṇini is preserved in Patañjali's Mahābhāṣya, the Paspaśāhnika (introductory section), and in the Pāṇinīya Śikṣā. See S. D. Joshi, <i>The Sphoṭanirṇaya of Kauṇḍabhaṭṭa</i> (Pune: University of Poona, 1967), for discussion of the tradition's reception among later grammarian-philosophers.</span></div>
+        <div class="fn"><span class="fnum">2</span><span>On the pratyāhāra technique and its dependence on the specific ordering of the Māheśvara sūtras, see George Cardona, <i>Pāṇini: A Survey of Research</i> (The Hague: Mouton, 1976), and Frits Staal's discussion of the technique's formal properties in <i>A Reader on the Sanskrit Grammarians</i> (Cambridge: MIT Press, 1972).</span></div>
+        <div class="fn"><span class="fnum">3</span><span>The svayaṃ rājante description of vowels and the vyañjayanti description of consonants are discussed in Part One, Footnote 6, citing the Pāṇinīya Śikṣā (verse 14) and Abhinavagupta's Parātriṃśikā-Vivaraṇa; see Jaideva Singh, <i>A Trident of Wisdom</i> (Albany: SUNY Press, 1989).</span></div>
+        <div class="fn"><span class="fnum">4</span><span>The classical Sāṃkhya enumeration of Puruṣa and the twenty-five (or twenty-four Prakṛtic) tattvas is set out in Īśvarakṛṣṇa's Sāṃkhyakārikā; for the predecessor series' application of this framework to AI architecture, see Cultural Musings, <i>Shastrasfourteen: Grand Final Synthesis</i>, available at shastrasfourteen.culturalmusings.com.</span></div>
+        <div class="fn"><span class="fnum">5</span><span>On bindu and nāda in Tantric and Āgamic cosmogony, see André Padoux, <i>Vāc: The Concept of the Word in Selected Hindu Tantras</i>, trans. Jacques Gontier (Albany: SUNY Press, 1990), particularly the discussion of sound's emergence from the unmanifest in chapters on the Trika and Śrīvidyā traditions.</span></div>
+        <div class="fn"><span class="fnum">6</span><span>On the palaeographic development of the śirorekha and Brāhmī-derived scripts more broadly, see Richard Salomon, <i>Indian Epigraphy: A Guide to the Study of Inscriptions in Sanskrit, Prakrit, and the Other Indo-Aryan Languages</i> (New York: Oxford University Press, 1998).</span></div>
+        <div class="fn"><span class="fnum">7</span><span>The rajju-sarpa (rope-snake) illustration of adhyāsa is most fully developed in Śaṅkara's Adhyāsa-Bhāṣya, the introductory section to the Brahmasūtra-Bhāṣya; trans. Swami Gambhirananda, <i>Brahma-Sūtra-Bhāṣya of Śrī Śaṅkarācārya</i> (Calcutta: Advaita Ashrama, 1965; revised 1972).</span></div>
+        <div class="fn"><span class="fnum">8</span><span>On alaṅkāraśāstra's theorisation of sound-sense correspondence, including anuprāsa and śabda-śakti, see K. Kunjunni Raja, <i>Indian Theories of Meaning</i> (Madras: Adyar Library, 1963), and Edwin Gerow, <i>A Glossary of Indian Figures of Speech</i> (The Hague: Mouton, 1971).</span></div>
+        <div class="fn"><span class="fnum">9</span><span>On the mirror and reflection (pratibimba) metaphor in Advaita Vedānta, see Eliot Deutsch, <i>Advaita Vedānta: A Philosophical Reconstruction</i> (Honolulu: University of Hawaii Press, 1969), chapter 3.</span></div>
+        <div class="fn"><span class="fnum">10</span><span>The computational comparison between Pāṇinian grammar and generative linguistics, introduced in Part One, Footnote 8, is developed further by Rick Briggs, 'Knowledge Representation in Sanskrit and Artificial Intelligence,' <i>AI Magazine</i> 6 (1985): 32–39.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ BIBLIOGRAPHY ============ -->
+    <section class="panel" id="bibliography">
+      <div class="section-roman">★</div>
+      <h1 class="section-title">Bibliography</h1>
+
+      <div class="bib-block">
+        <h4 class="bib-heading">Primary Sources — Classical Indian Texts</h4>
+        <div class="bib-entry">Pāṇini. <i>Aṣṭādhyāyī.</i> Ed. and trans. S. C. Vasu. 2 vols. Allahabad: Indian Press, 1891; repr. Delhi: Motilal Banarsidass, 1975.</div>
+        <div class="bib-entry">Patañjali (the Grammarian). <i>Mahābhāṣya.</i> Ed. F. Kielhorn. 3 vols. Bombay: Government Central Book Depot, 1880–1885.</div>
+        <div class="bib-entry">Bharṭṛhari. <i>Vākyapadīya.</i> Ed. K. V. Abhyankar and V. P. Limaye. Pune: Deccan College, 1965. Trans. K. Pillai. Delhi: Motilal Banarsidass, 1971.</div>
+        <div class="bib-entry">Śaṅkarācārya. <i>Brahmasūtra-Bhāṣya.</i> Sanskrit text: Nirnaya Sagar edition, Bombay, 1938. Trans. Swami Gambhirananda. Calcutta: Advaita Ashrama, 1965; revised 1972.</div>
+        <div class="bib-entry">Īśvarakṛṣṇa. <i>Sāṃkhyakārikā.</i> Trans. Gerald J. Larson, in <i>Classical Sāṃkhya: An Interpretation of Its History and Meaning.</i> Delhi: Motilal Banarsidass, 1979.</div>
+        <div class="bib-entry">Abhinavagupta. <i>Parātriṃśikā-Vivaraṇa.</i> Trans. Jaideva Singh: <i>A Trident of Wisdom.</i> Albany: SUNY Press, 1989.</div>
+      </div>
+
+      <div class="bib-block">
+        <h4 class="bib-heading">Secondary Sources — Grammar, Script, and Phonology</h4>
+        <div class="bib-entry">Cardona, George. <i>Pāṇini: A Survey of Research.</i> The Hague: Mouton, 1976.</div>
+        <div class="bib-entry">Joshi, S. D. <i>The Sphoṭanirṇaya of Kauṇḍabhaṭṭa.</i> Pune: University of Poona, 1967.</div>
+        <div class="bib-entry">Salomon, Richard. <i>Indian Epigraphy: A Guide to the Study of Inscriptions in Sanskrit, Prakrit, and the Other Indo-Aryan Languages.</i> New York: Oxford University Press, 1998.</div>
+        <div class="bib-entry">Staal, Frits, ed. <i>A Reader on the Sanskrit Grammarians.</i> Cambridge: MIT Press, 1972.</div>
+        <div class="bib-entry">Deshpande, Madhav M. <i>Sanskrit and Prakrit: Sociolinguistic Issues.</i> Delhi: Motilal Banarsidass, 1979.</div>
+      </div>
+
+      <div class="bib-block">
+        <h4 class="bib-heading">Secondary Sources — Tantric Cosmology and Sound</h4>
+        <div class="bib-entry">Padoux, André. <i>Vāc: The Concept of the Word in Selected Hindu Tantras.</i> Trans. Jacques Gontier. Albany: SUNY Press, 1990.</div>
+        <div class="bib-entry">Singh, Jaideva. <i>A Trident of Wisdom: Translation of Parātriṃśikā-Vivaraṇa.</i> Albany: SUNY Press, 1989.</div>
+      </div>
+
+      <div class="bib-block">
+        <h4 class="bib-heading">Secondary Sources — Indian Philosophy and Rhetoric</h4>
+        <div class="bib-entry">Deutsch, Eliot. <i>Advaita Vedānta: A Philosophical Reconstruction.</i> Honolulu: University of Hawaii Press, 1969.</div>
+        <div class="bib-entry">Gerow, Edwin. <i>A Glossary of Indian Figures of Speech.</i> The Hague: Mouton, 1971.</div>
+        <div class="bib-entry">Raja, K. Kunjunni. <i>Indian Theories of Meaning.</i> Madras: Adyar Library, 1963.</div>
+        <div class="bib-entry">Larson, Gerald J. <i>Classical Sāṃkhya: An Interpretation of Its History and Meaning.</i> Delhi: Motilal Banarsidass, 1979.</div>
+        <div class="bib-entry">Halbfass, Wilhelm. <i>India and Europe: An Essay in Understanding.</i> Albany: SUNY Press, 1988.</div>
+        <div class="bib-entry">Matilal, Bimal Krishna. <i>The Word and the World: India's Contribution to the Study of Language.</i> Oxford: Oxford University Press, 1990.</div>
+      </div>
+
+      <div class="bib-block">
+        <h4 class="bib-heading">Predecessor and Series Context</h4>
+        <div class="bib-entry">Cultural Musings. <i>Shastrasfourteen: Grand Final Synthesis — Sāṃkhya-Yoga and the Computational Puruṣa.</i> Available at: shastrasfourteen.culturalmusings.com.</div>
+        <div class="bib-entry">Cultural Musings. <i>Series A, Part One: The Advent of Language in Itself.</i> Available at: shastrasextentionvak.culturalmusings.com.</div>
+      </div>
+
+      <div class="divider">ॐ तत् सत्</div>
+    </section>
+
+    <!-- ============ GLOSSARY ============ -->
+    <section class="panel" id="glossary">
+      <div class="section-roman">☆</div>
+      <h1 class="section-title">Glossary</h1>
+
+      <p>This glossary collects the Sanskrit technical terms used across the present paper, with brief working definitions. It supplements but does not replace the fuller philosophical development of these terms in Part One and in the body of this paper; section references point to where each term receives its primary treatment here.</p>
+
+      <div class="gloss-section-label first">Core Ontological Terms</div>
+      <div class="gloss-entry">
+        <div class="gloss-term">अक्षर<span class="translit">akṣara</span></div>
+        <div class="gloss-def">Literally 'imperishable'; the syllable-grapheme unit of Devanāgarī, held to carry a trace of language's imperishable dimension beyond mere phonographic notation. See Part One §5.3 and Section I of this paper.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">स्फोट<span class="translit">sphoṭa</span></div>
+        <div class="gloss-def">Bharṭṛhari's eternal, indivisible meaning-bearing unit of language, revealed by but not constituted from the sequence of phonemes. Central to Part One, Section II; revisited at the graphemic level in Section IV of this paper.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">वाक्<span class="translit">vāk</span></div>
+        <div class="gloss-def">Voice, speech, the cosmic principle of articulation; encompasses the four levels Parā, Paśyantī, Madhyamā, Vaikharī. See Part One, Section III.</div>
+      </div>
+
+      <div class="gloss-section-label">The Four Levels of Vāk</div>
+      <div class="gloss-entry">
+        <div class="gloss-term">परा<span class="translit">parā</span></div>
+        <div class="gloss-def">The unmanifest ground; language as pure undifferentiated potential, identified with Brahman. Part One's primary level of operation.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">पश्यन्ती<span class="translit">paśyantī</span></div>
+        <div class="gloss-def">The 'seeing word'; gestalt meaning prior to sequential differentiation. Part One and Part Two both operate partly at this level.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">मध्यमा<span class="translit">madhyamā</span></div>
+        <div class="gloss-def">The sequential mental word; fully formed grammar and structure prior to externalised utterance. The domain of Pāṇini's analysis.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">वैखरी<span class="translit">vaikharī</span></div>
+        <div class="gloss-def">Physically articulated speech; the level at which Devanāgarī graphemes are inscribed and Śaṅkara's bhāṣyas exist as manuscripts.</div>
+      </div>
+
+      <div class="gloss-section-label">Script and Phonology</div>
+      <div class="gloss-entry">
+        <div class="gloss-term">माहेश्वर सूत्र<span class="translit">māheśvara sūtra</span></div>
+        <div class="gloss-def">The fourteen phoneme-groups traditionally revealed by Śiva to Pāṇini, foundational to the Aṣṭādhyāyī. See Section II.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">प्रत्याहार<span class="translit">pratyāhāra</span></div>
+        <div class="gloss-def">Pāṇini's technique of referring to a phoneme-class by citing its first member and a closing marker, dependent on the Māheśvara sūtras' specific ordering. See Section 2.2.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">स्वर / व्यञ्जन<span class="translit">svara / vyañjana</span></div>
+        <div class="gloss-def">Vowel ('self-luminous,' svayaṃ rājante) and consonant ('manifesting-through,' vyañjayanti) — the script's structural analogue to Puruṣa and Prakṛti. See Section 2.3.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">अनुस्वार<span class="translit">anusvāra</span></div>
+        <div class="gloss-def">The nasalisation-mark (ं), associated with bindu, the concentrated point of pre-expanded potential. See Section III.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">विसर्ग<span class="translit">visarga</span></div>
+        <div class="gloss-def">The aspirated breath-release mark (ः), associated with nāda, sound's first emergence from undifferentiated breath. See Section III.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">शिरोरेखा<span class="translit">śirorekha</span></div>
+        <div class="gloss-def">The horizontal headline binding the akṣaras of a Devanāgarī word into a single visual gestalt. See Section IV.</div>
+      </div>
+
+      <div class="gloss-section-label">Cosmological and Tantric Terms</div>
+      <div class="gloss-entry">
+        <div class="gloss-term">बिन्दु<span class="translit">bindu</span></div>
+        <div class="gloss-def">The concentrated point of undifferentiated potential from which manifestation expands; read here as the conceptual referent of the anusvāra. See Section 3.2.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">नाद<span class="translit">nāda</span></div>
+        <div class="gloss-def">Primordial sound-vibration prior to differentiation into phonemes; read here as the conceptual referent of the visarga. See Section 3.3.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">पुरुष / प्रकृति<span class="translit">puruṣa / prakṛti</span></div>
+        <div class="gloss-def">Sāṃkhya's self-luminous consciousness and manifested world respectively; the cosmological pairing this paper maps onto svara and vyañjana. See Section 2.3 and Part One's predecessor series, shastrasfourteen.culturalmusings.com.</div>
+      </div>
+
+      <div class="gloss-section-label">Rhetorical and Textual Terms</div>
+      <div class="gloss-entry">
+        <div class="gloss-term">भाष्य<span class="translit">bhāṣya</span></div>
+        <div class="gloss-def">Commentary genre; Śaṅkara's principal mode of philosophical writing, operating primarily at Madhyamā while carrying Paśyantī-level metaphors. See Part One, Section VI, and this paper's Section V.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">अध्यास<span class="translit">adhyāsa</span></div>
+        <div class="gloss-def">Superimposition; the erroneous attribution of one thing's properties onto another, illustrated by the rajju-sarpa (rope-snake) image. See Section 5.2.</div>
+      </div>
+      <div class="gloss-entry">
+        <div class="gloss-term">अलंकारशास्त्र<span class="translit">alaṅkāraśāstra</span></div>
+        <div class="gloss-def">The Sanskrit science of rhetorical ornament, theorising sound-sense correspondence under categories such as anuprāsa (alliteration) and śabda-śakti (the inherent power of sound). See Section 5.5.</div>
+      </div>
+    </section>
+
+    <div class="footer-band">
+      <div class="om skt">ॐ तत् सत्</div>
+      <div class="om-translit">om tat sat — That is Truth</div>
+      <div class="fb-title">Series A · Part Two · The Script as Philosophy</div>
+      <div class="fb-sub">Cultural Musings · Vedic &amp; Śāstric Research Platform</div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  (function(){
+    var links = document.querySelectorAll('.tab-link');
+    var panels = document.querySelectorAll('.panel');
+
+    function activate(tabId){
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === tabId); });
+      links.forEach(function(l){ l.classList.toggle('active', l.getAttribute('data-tab') === tabId); });
+      window.scrollTo({top:0, behavior:'instant'});
+      try { history.replaceState(null, '', '#' + tabId); } catch(e){}
+    }
+
+    links.forEach(function(link){
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        var tabId = link.getAttribute('data-tab');
+        activate(tabId);
+      });
+    });
+
+    var initial = (window.location.hash || '').replace('#','');
+    var validIds = Array.prototype.map.call(panels, function(p){ return p.id; });
+    if (initial && validIds.indexOf(initial) !== -1){
+      activate(initial);
+    } else {
+      activate('series-context');
+    }
+  })();
+</script>
+
+</body>
+</html>
